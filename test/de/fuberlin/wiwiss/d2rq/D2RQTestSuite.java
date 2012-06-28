@@ -2,15 +2,17 @@ package de.fuberlin.wiwiss.d2rq;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-
+import junit.framework.JUnit4TestAdapter;
 import junit.framework.Test;
 import junit.framework.TestSuite;
+import de.fuberlin.wiwiss.d2rq.rdb2rdf.DirectMappingTest;
 
 /**
  * Test suite for D2RQ
  *
  * @author Richard Cyganiak (richard@cyganiak.de)
  */
+
 public class D2RQTestSuite {
 	public static final String DIRECTORY = "test/de/fuberlin/wiwiss/d2rq/";
 	public static final String DIRECTORY_URL = "file:" + DIRECTORY;
@@ -44,6 +46,8 @@ public class D2RQTestSuite {
 		suite.addTest(de.fuberlin.wiwiss.d2rq.d2rq_sdb.AllTests.suite());
 		suite.addTest(de.fuberlin.wiwiss.d2rq.optimizer.AllTests.suite());
 		suite.addTest(de.fuberlin.wiwiss.d2rq.vocab.AllTests.suite());
+		suite.addTest(new JUnit4TestAdapter(DirectMappingTest.class));
+
 		return suite;
 	}
 	
