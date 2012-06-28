@@ -19,7 +19,7 @@ import de.fuberlin.wiwiss.d2rq.D2RQException;
 @RunWith(Parameterized.class)
 public class DirectMappingTest {
 
-	static String ts_path = "rdb2rdf-ts/";
+	static String ts_path = "doc/rdb2rdf-ts/";
 	static String[] arg = new String[10];
 	Model model1;
 	Model model2;
@@ -40,7 +40,7 @@ public class DirectMappingTest {
 	public DirectMappingTest(String file1, String file2) {
 		Model model1 = getJenaModel(file1);
 		Model model2 = getJenaModel(file2);
-	
+		System.out.println(file1);
 		if(model1.isIsomorphicWith(model2))
 			this.matched = true;
 		else
