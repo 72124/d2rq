@@ -56,8 +56,8 @@ public class R2RMLTest {
 		Object[] arr;
 		
 		while (resultSet.hasNext()) {
-			QuerySolution solution = resultSet.nextSolution();
 			arr = new Object[4];
+			QuerySolution solution = resultSet.nextSolution();
 			arr[0] = "jdbc:hsqldb:mem:" + f.getName() + solution.getLiteral("rml").toString();
 			arr[1] = absolutePath + "/create.sql";
 			arr[2] = absolutePath + "/" + solution.getLiteral("rml").toString();
@@ -90,16 +90,15 @@ public class R2RMLTest {
 	public void r2rmlValidator() {
 		SystemLoader loader = new SystemLoader();
 		loader.setJdbcURL(this.jdbcURL);
-		loader.setMappingFileOrJdbcURL(this.r2rmlFilePath);
-		loader.setGenerateW3CDirectMapping(true);
+		loader.setMappingFile(this.r2rmlFilePath);
 		loader.setStartupSQLScript(this.sqlFile);
 		loader.setSystemBaseURI(baseURI);
-//		Model d2rqModel = loader.getModelD2RQ();
-//		Model model = getJenaModel(this.nQuadsFilePath);
-//		assertEquals(true,model.isIsomorphicWith(d2rqModel));
+		Model d2rqModel = loader.getModelD2RQ();
+		Model model = getJenaModel(this.nQuadsFilePath);
+		assertEquals(true,model.isIsomorphicWith(d2rqModel));
 	}
 	
 	public static Model getJenaModel(String inputFileName) {
-		return FileManager.get().readModel(ModelFactory.createDefaultModel(),inputFileName);
+		return FileManager.get().readModel(ModelFactory.createDefaultModel(),inputFileName,"TURTLE");
 	}
 }
